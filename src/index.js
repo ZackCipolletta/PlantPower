@@ -77,7 +77,7 @@ window.addEventListener("load", function () {
       x[i].innerText = `Water: ${newState.water}`;
     }
   };
-  const baseValues = (name)=> {
+  const basePlantValues = (name)=> {
     return (`<h1>Your ${name || "plant"}'s Values:</h1>
     <h3><div id="soil-value">0</div></h3>
     <h3><div id="water-value">0</div></h3>`);
@@ -85,26 +85,26 @@ window.addEventListener("load", function () {
 
   document.getElementById('new-plant').onclick = function () {
     let x = document.createElement("p");
-    x.innerHTML = baseValues();
+    x.innerHTML = basePlantValues();
     stateArr.push(storeState()); // upon creation of a new plant html element, push a new iteration of storeState to the array. While each element in the array is named the same and does the same thing, javascript is tracking which one is matched to which plant. In this way, javascript will be able to independently track each plant whenever we click the feed or water buttons. We do not need to reference the DOM to check the current state, we are able to have javascript track it for us.
     document.querySelector('body').append(x);
   };
 
   document.getElementById('sun-plant').onclick = function () {
     let x = document.createElement("p");
-    x.innerHTML = baseValues("Sunflower") + `<h3><div id="sun-value">0</div></h3>`;
+    x.innerHTML = basePlantValues("Sunflower") + `<h3><div id="sun-value">0</div></h3>` ;
     stateArr.push(storeState()); 
     document.querySelector('body').append(x);
   };
 
   document.getElementById('fly-trap').onclick = function () {
     let x = document.createElement("p");
-    x.innerHTML = `<h1>Your Venus Fly Trap's Values:</h1>
-    <h3><div id="bug-value">0</div></h3>` + baseValues();
+    x.innerHTML = basePlantValues("Venus Fly-trap") + `<h3><div id="bug-value">0</div></h3>`;
     stateArr.push(storeState()); 
     document.querySelector('body').append(x);
   };
   
+
   // This function doesn't actually do anything useful in this application — it just demonstrates how we can "look" at the current state (which the DOM is holding anyway). However, students often do need the ability to see the current state without changing it so it's included here for reference.
   document.getElementById('show-state').onclick = function () {
     // We just need to call stateControl() without arguments to see our current state.
